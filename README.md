@@ -7,6 +7,19 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+Documentation link :
+https://hevodata.com/learn/docker-mysql/#s2
+
+docker run --name=mysql -e MYSQL_ROOT_PASSWORD=toto  -P3306 -d mysql
+
+docker logs mysql
+
+GENERATED ROOT PASSWORD: 2&;I@6u63Wh5b3BBG9*%&Wh8Pz%*xbMs
+
+docker exec -it mysql bash
+
+docker inspect mysql
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

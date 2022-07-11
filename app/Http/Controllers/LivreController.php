@@ -28,23 +28,25 @@ class LivreController extends Controller
         $auteur = Auteurs::where('nom', '=', $input['nom'])
             ->where('prenom', '=', $input['prenom'])
             ->first();
+
         if (!isset($auteur)) {
             $auteur = new Auteurs();
             $auteur->nom = $input['nom'];
             $auteur->prenom = $input['prenom'];
             $auteur->save();
         }
+
         $auteur = isset($auteur) ? $auteur : new Auteurs();
         $auteur->nom = $input['nom'];
         $auteur->prenom = $input['prenom'];
         $auteur->save();
+
         $livre = new Livres();
         $livre->titre = $input['titre'];
         $livre->auteur()->associate($auteur);
         $livre->save();
         return redirect()->route('livres');
     }
-
 
     public function destroy($id)
     {
@@ -56,12 +58,12 @@ class LivreController extends Controller
 
         return redirect('/livres')->with('success_delete', 'Le livres à été effacer');
     }
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $input = $request->input();
         $livre = Livres::find($id);
         $livre->titre = $input['titre'];
         $livre->save();
         return redirect()->route('livres');
     }
-
 }

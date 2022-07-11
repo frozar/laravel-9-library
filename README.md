@@ -7,10 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+sudo service mysql stop
+
 Documentation link :
 https://hevodata.com/learn/docker-mysql/#s2
 
-docker run --name=mysql -e MYSQL_ROOT_PASSWORD=toto  -P3306 -d mysql
+docker run --name=mysql -e MYSQL_ROOT_PASSWORD=toto  -p 3306:3306 -d mysql
+mysql -h 0.0.0.0 -uroot -p
+CREATE DATABASE library;
+php artisan migrate
 
 docker logs mysql
 

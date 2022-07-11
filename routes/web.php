@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/livres');
 });
 
 Route::get('/livres', [LivreController::class, 'getAll'])->name('livres');
 Route::get('/livres/{id}', [LivreController::class, 'get']);
 Route::post('/livres', [LivreController::class, 'add']);
-Route::delete('/livres/{id}', [livreController::class, 'destroy']);//->name('livre.delete');
+Route::delete('/livres/{id}', [livreController::class, 'destroy']); //->name('livre.delete');
 Route::post('/livres/{id}', [LivreController::class, 'update']);

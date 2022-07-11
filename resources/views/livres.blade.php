@@ -5,6 +5,15 @@
         <h1>{{ $titre }}</h1>
     </div>
 
+    @if (session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+        {{-- <div>{{ session()->all() }}</div> --}}
+        {{-- @foreach ($session()->all() as $elt)
+            <div>
+                {{ $elt }}
+            </div>
+        @endforeach --}}
+    @endif
 
     @include('components.addlivres')
     <div class="d-flex justify-content-center">

@@ -16,9 +16,11 @@ class UpdateLivresTable extends Migration
         Schema::table('livres', function (Blueprint $table) {
             $table->unsignedBigInteger('id_auteurs');
 
-            $table->foreign('id_auteurs')->references('id')->on('auteurs');
+            $table
+                ->foreign('id_auteurs')
+                ->references('id')
+                ->on('auteurs');
         });
-
     }
 
     /**
@@ -28,6 +30,8 @@ class UpdateLivresTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('livres', function (Blueprint $table) {
+            $table->dropColumn('id_auteurs');
+        });
     }
 }

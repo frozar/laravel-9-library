@@ -44,14 +44,19 @@ class LivreController extends Controller
         $livre = new Livres();
         $livre->titre = $input['titre'];
         $livre->auteur()->associate($auteur);
-        $livre->save();
+
+        try {
+            $livre->save();
+        } catch (\Illuminate\Database\QueryException$e) {
+
+            $message = explode(" (", explode(": ", $e->getMessage())[2])[0];
+            return back()->withError($message)->withInput();
+        }
         return redirect()->route('livres');
     }
 
     public function destroy($id)
     {
-        // $data=Livres::find($id);
-        // $data->delete();
         $livre = Livres::whereId($id)->first();
 
         $livre->delete();

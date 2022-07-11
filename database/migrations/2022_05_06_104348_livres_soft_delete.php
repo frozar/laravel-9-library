@@ -16,7 +16,6 @@ class LivresSoftDelete extends Migration
         Schema::table('livres', function (Blueprint $table) {
             $table->softDeletes();
         });
-        //
     }
 
     /**
@@ -26,6 +25,8 @@ class LivresSoftDelete extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('livres', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

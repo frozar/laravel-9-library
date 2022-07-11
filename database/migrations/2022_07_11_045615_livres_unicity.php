@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+class LivresUnicity extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,11 +13,8 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('auteurs', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->timestamps();
+        Schema::table('livres', function (Blueprint $table) {
+            $table->unique(['titre', 'id_auteurs'], 'unique_titre_auteur');
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('auteurs');
+        Schema::table('livres', function (Blueprint $table) {
+            $table->dropUnique('unique_titre_auteur');
+        });
     }
-};
+}
